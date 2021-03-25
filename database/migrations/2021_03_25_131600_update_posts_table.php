@@ -16,10 +16,10 @@ class UpdatePostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             /* creazione della colonna user_id */
             $table->unsignedBigInteger('user_id')->after('id');
-
             /* creazione della relazione */
             $table->foreign('user_id')->references('id')->on('users');
-            /* alternativa contratta */
+            
+            /* alternativa contratta da sostituire alle prime due (creazione e relazione) */
             /* $table->foreignId('user_id')->constrained(); */
         });
     }
