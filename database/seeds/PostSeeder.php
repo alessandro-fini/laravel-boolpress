@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Post;
+use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,10 +18,14 @@ class PostSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $newPost = new Post();
 
-            $newPost->user_id = '1';
+            /* $users = User::all(); */ /* selezione di tutti gli utenti */
+            /* $users = $users->toArray(); */ /* conversione della collection in array */
+            /* $howManyUsers = Count($users); */ /* count degli elementi */
+            $howManyUsers = Count(User::all()->toArray());
+            $newPost->user_id = rand(1, $howManyUsers);
 
-            /* $newPost->title = $faker->sentence(3); */
-            $newPost->title = 'Titolo di prova';
+            $newPost->title = $faker->sentence(3);
+            /* $newPost->title = 'Titolo di prova'; */
 
             /* --- slug --- */
             $slug = Str::slug($newPost->title);
