@@ -17,8 +17,30 @@ class PostSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $newPost = new Post();
 
-            $newPost->title = $faker->sentence(3);
-            $newPost->slug = Str::slug($newPost->title);
+            $newPost->user_id = '1';
+
+            /* $newPost->title = $faker->sentence(3); */
+            $newPost->title = 'Titolo di prova';
+
+            /* --- slug --- */
+            $slug = Str::slug($newPost->title);
+            /* controllare se nella tabella posts sia già presente uno slug uguale alla variabile $slug */
+            /* restituisce un valore numerico se true o null se false */
+            $ifSlugExists = Post::where('slug', $slug)->first();
+            /* salvare il risultato di $slug in una variabile temporanea */
+            $tempSlug = $slug;
+            /* inizializzare un contatore */
+            $counter = 1;
+
+            while ($ifSlugExists) {
+                $slug = $tempSlug . '-' . $counter;
+                $ifSlugExists = Post::where('slug', $slug)->first();
+                $counter++;
+            }
+
+            $newPost->slug = $slug;
+            /* ---slug--- */
+
             $newPost->content = $faker->text();
 
             $newPost->save();
