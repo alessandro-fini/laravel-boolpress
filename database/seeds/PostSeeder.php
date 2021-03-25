@@ -20,7 +20,6 @@ class PostSeeder extends Seeder
             $newPost->title = $faker->sentence(3);
             $newPost->slug = Str::slug($newPost->title);
             $newPost->content = $faker->text();
-            $newPost->author = $faker->name();
 
             $newPost->save();
         }
