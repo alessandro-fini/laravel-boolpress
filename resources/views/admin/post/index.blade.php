@@ -31,6 +31,11 @@
             <p class="card-text">{{ $post->content }}</p>
             <a href="{{ route('post.show', $post->id) }}" class="btn btn-info">Info</a>
             <a href="{{ route('post.edit', $post->id) }}" class="btn btn-success">Edit</a>
+            <form action="{{ route('post.destroy', $post->id) }}" class="d-inline-block" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </div>
     @endforeach
