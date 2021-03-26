@@ -25,6 +25,7 @@
             <h5 class="card-title">{{ $post->title }}</h5>
             <p class="card-text">{{ $post->content }}</p>
             <a href="{{ route('post.show', $post->id) }}" class="btn btn-info">Info</a>
+            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-success">Edit</a>
         </div>
     </div>
     @endforeach

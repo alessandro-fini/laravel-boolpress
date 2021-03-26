@@ -79,9 +79,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        if ($post) {
+            $data = ['post' => $post];
+
+            return view('admin.post.edit', $data);
+        }
+
+        abort('404');
     }
 
     /**
@@ -91,9 +97,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        $request->validate([
+            'title' => 'required|unique:posts|max:150',
+            'content' => 'required'
+        ]);
+
+        $post->update($data);
+
+        return redirect()->route('post.show', $post)->with('status', 'Record updated');
     }
 
     /**
