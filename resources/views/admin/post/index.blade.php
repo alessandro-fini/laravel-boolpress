@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Admin Post')
+
 @section('content')
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -16,22 +18,15 @@
     </li>
 </ul>
 <div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+    @foreach ($posts as $post)
+    <div class="card mb-3">
+        <div class="card-header">{{ $post->id }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ $post->title }}</h5>
+            <p class="card-text">{{ $post->content }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
+    @endforeach
 </div>
 @endsection

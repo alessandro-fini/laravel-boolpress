@@ -28,7 +28,7 @@
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     Post
                 </a>
-                <a class="navbar-brand" href="{{ route('home') }}">Admin Home</a>
+                <a class="navbar-brand" href="{{ route('home') }}">Admin</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
