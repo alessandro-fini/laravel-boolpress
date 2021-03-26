@@ -17,6 +17,11 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
     </li>
 </ul>
+@if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+@endif
 <div class="container mt-4">
     @foreach ($posts as $post)
     <div class="card mb-3">

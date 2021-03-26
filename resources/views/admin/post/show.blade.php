@@ -3,6 +3,11 @@
 @section('title', 'Admin Post Info')
 
 @section('content')
+@if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+@endif
 <div class="container mt-4">
     <div class="card mb-3">
         <div class="card-header">{{ $post->slug }}</div>
