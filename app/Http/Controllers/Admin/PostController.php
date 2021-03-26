@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -28,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.post.create');
     }
 
     /**
@@ -39,7 +41,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $request->validate([
+            'title' => 'required|unique:posts|max:150',
+            'content' => 'required'
+        ]);
+
+        /* recupero dell'id dell'utente validato */
+        $id = Auth::id();
+        /* dd($data); */
+
+        $newPost = new Post();
+        $newPost->user_id = $id;
+        $newPost->slug = Str::slug($data['title']);
+        $newPost->fill($data);
+        $newPost->save();
+
+        return redirect()->route('post.index')->with('status', 'Record added');
     }
 
     /**
