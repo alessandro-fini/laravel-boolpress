@@ -23,10 +23,12 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <h2 class="mr-4">Boolpress</h2>
                 <a class="navbar-brand" href="{{ route('guest.post.index') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     Post
                 </a>
+                <a class="navbar-brand" href="{{ route('home') }}">Admin Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

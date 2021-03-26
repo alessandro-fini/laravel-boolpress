@@ -9,7 +9,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
-        'content'
+        'content',
+        'user_id'
     ];
 
     /* relazione uno a molti => un post può avere un solo utente */
