@@ -112,10 +112,15 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
+
         $request->validate([
             'title' => 'required|unique:posts|max:150',
             'content' => 'required'
         ]);
+        
+        if ($data['title'] != $post->title) {
+            $data['slug'] = Str::slug($data['title']);
+        }
 
         $post->update($data);
 
