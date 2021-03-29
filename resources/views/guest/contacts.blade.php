@@ -3,6 +3,11 @@
 @section('title', 'Pagina contatti')
 
 @section('content')
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="container">
         <form action="{{ route('guest.contacts.email') }}" method="POST">
             @csrf
