@@ -90,7 +90,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         if ($post) {
-            $data = ['post' => $post];
+            $tags = Tag::all();
+            $data = [
+                'post' => $post,
+                'tags' => $tags
+            ];
 
             return view('admin.post.edit', $data);
         }
@@ -115,6 +119,10 @@ class PostController extends Controller
 
         $post->update($data);
 
+        if (array_key_exists('tags' , $data)) {
+            $post->tags()->sync($data['tags']);
+        }
+
         return redirect()->route('post.show', $post)->with('status', 'Record updated');
     }
 
@@ -126,6 +134,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->sync([]);
+
         $post->delete();
 
         return redirect()->route('post.index')->with('status', 'Record deleted');

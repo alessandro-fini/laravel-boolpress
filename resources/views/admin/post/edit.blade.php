@@ -24,10 +24,12 @@
             <label for="input_content">Content</label>
             <textarea class="form-control" id="input_content" rows="8" name="content">{{ $post->content }}</textarea>
         </div>
+        @foreach ($tags as $tag)
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <input type="checkbox" class="form-check-input" id="input_check" value="{{ $tag->id }}" name="tags[]" {{ ($post->tags->contains($tag->id) ? 'checked' : '') }}>
+            <label class="form-check-label" for="input_check">{{ $tag->name }}</label>
         </div>
+        @endforeach
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
