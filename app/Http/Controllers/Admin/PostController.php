@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -58,6 +59,9 @@ class PostController extends Controller
         $newPost = new Post();
         $newPost->user_id = $id;
         $newPost->slug = Str::slug($data['title']);
+        /* immagini */
+        $newPost->cover = Storage::put('post_covers', $data['image']);
+        /* / */
         $newPost->fill($data);
         $newPost->save();
 
