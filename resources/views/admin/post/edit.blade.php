@@ -24,6 +24,12 @@
             <label for="input_content">Content</label>
             <textarea class="form-control" id="input_content" rows="8" name="content">{{ $post->content }}</textarea>
         </div>
+        @if ($post->cover)
+            <p>Immagine inserita:</p>
+            <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}" style="max-width: 50%" class="mb-3">
+        @else
+            <p>Nessuna immagine caricata.</p>
+        @endif
         <div class="form-group">
             <label for="input_file">Inserisci il file</label>
             <input type="file" class="form-control-file" id="input_file" name="image">

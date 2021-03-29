@@ -59,7 +59,7 @@ class PostController extends Controller
         $newPost = new Post();
         $newPost->user_id = $id;
         $newPost->slug = Str::slug($data['title']);
-        /* immagini */
+        /* immagini - public/storage/post_covers è la cartella in cui verranno salvate */
         $newPost->cover = Storage::put('post_covers', $data['image']);
         /* / */
         $newPost->fill($data);
@@ -124,6 +124,10 @@ class PostController extends Controller
         
         if ($data['title'] != $post->title) {
             $data['slug'] = Str::slug($data['title']);
+        }
+
+        if (array_key_exists('image' , $data)) {
+            $data['cover'] = Storage::put('post_covers', $data['image']);            
         }
 
         $post->update($data);
