@@ -80,7 +80,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $data = ['post' => $post];
+        $tags = $post->tags;
+        $data = [
+            'post' => $post, 
+            'tags' => $tags
+        ];
 
         return view('admin.post.show', $data);
     }
@@ -118,9 +122,15 @@ class PostController extends Controller
         $data = $request->all();
 
         $request->validate([
-            'title' => 'required|unique:posts|max:150',
+            'title' => 'required|max:150',
             'content' => 'required'
         ]);
+
+        if ($data['title'] != $post->title) {
+            $request->validate([
+                'title' => 'required|unique:posts|max:150'
+            ]);
+        }
         
         if ($data['title'] != $post->title) {
             $data['slug'] = Str::slug($data['title']);
