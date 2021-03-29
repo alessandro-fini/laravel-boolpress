@@ -15,4 +15,12 @@ class HomeController extends Controller
     {
         return view('guest.home');
     }
+
+    public function contacts() {
+        return view('guest.contacts');
+    }
+
+    public function sendEmail(Request $request) {
+        $data = $request->all();
+    }
 }
