@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('post.update', $post->id) }}" method="POST">
+    <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -23,6 +23,10 @@
         <div class="form-group">
             <label for="input_content">Content</label>
             <textarea class="form-control" id="input_content" rows="8" name="content">{{ $post->content }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="input_file">Inserisci il file</label>
+            <input type="file" class="form-control-file" id="input_file" name="image">
         </div>
         @foreach ($tags as $tag)
         <div class="form-group form-check">
