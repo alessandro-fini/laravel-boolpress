@@ -18,7 +18,11 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        $data = ['post' => $post];
+        $tags = $post->tags;
+        $data = [
+            'post' => $post,
+            'tags' => $tags
+        ];
 
         return view('guest.post.show', $data);
     }
