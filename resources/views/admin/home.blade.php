@@ -11,7 +11,7 @@
     <li class="nav-item">
         <a class="nav-link {{ (Request::route() -> getName() == 'post.create') ? 'active' : '' }}" href="{{ route('post.create') }}">Aggiungi un post</a>
     <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link {{ (Request::route() -> getName() == 'user.profile') ? 'active' : '' }}" href="{{ route('user.profile') }}">Profilo utente</a>
     </li>
 </ul>
 <div class="container mt-4">
